@@ -80,6 +80,8 @@ public class P02_HamcrestSpartan extends SpartanTestBase {
                 .extract().response();//.path("id") // to get data from response
 //But when you type path to end , it is not complaining
 //without  extract().response(), can not initialize response object
+
+        //if we need id to verify agaist UI test, so we get id as below:
         int id = response.path("id");
         System.out.println("id = " + id);
 /*
@@ -100,15 +102,14 @@ then(). log().all() --> it will give all response information
         //HOW TO EXTRACT
        /*
        use extract() with hamCrest only
-       extract() --> method will help us to get data after doing verification as
+       extract() --> method will help us to get data after doing verification fields with hamCrest
        response()
        OR
        jsonPath()
         - Why we need to extract ?
-            - Assume that we are gonna do verification against UI/DB.In that case I need to get data from API after doing verification
-            - SO we need to sometimes List of names / ids etc to check
-            - That is why we need to initilaize as Response or JSonPath (Since we know how to get data through this objects )
-               to get realted data that you wanna verify
+            - Assume that we are gonna do verification against UI/DB.In that case I need to get data from API after doing verification.
+            -> SO we need to sometimes List of names / ids etc.. to check
+            - That is why we need to initilaize as Response or JSonPath (Since we know how to get data through this objects ) to get related data that you wanna verify
         */
     }
 

@@ -1,5 +1,6 @@
 package com.cydeo.day06;
 
+import com.cydeo.pojo.FormulaDriver;
 import com.cydeo.utilities.FomulaTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,8 +36,10 @@ int total = jsonpath.getInt(“pathOfField”)
 - Use HAMCREST MATCHERS
 then().body(..........)
 Print givenName of Driver by using extract method after HamCrest
+
 - Convert Driver information to Java Structure
 Map<String,Object> driverMap=jsonpath.getMap(“pathOfDriver”)
+
 - Convert Driver information POJO Class
 Driver driver=getObject(“pathOfDriver”,Driver.class)
 - Given accept type is json
@@ -85,4 +90,74 @@ Driver driver=getObject(“pathOfDriver”,Driver.class)
                 .extract().jsonPath();
 
     }
+
+    @DisplayName("Convert Driver information to Java Structure")
+    @Test
+    public void testJavaCollection(){
+        JsonPath jsonPath = given().accept(ContentType.JSON)
+                .pathParam("driverId", "alonso")
+                .when().get("/drivers/{driverId}.json")
+                .then()
+                .statusCode(200)
+                .and()
+                .contentType("application/json; charset=utf-8")
+                .extract().jsonPath();
+
+//Map of driver
+       Map<String, Object> driver = jsonPath.getMap("MRData");
+        System.out.println("Driver = " + driver);
+
+        String total1 = (String)driver.get("total");
+        System.out.println("total = " + total1);
+
+//Map of driverTable
+        Map<String, Object> driverTable = jsonPath.getMap("MRData.DriverTable");
+        System.out.println("driverTable = " + driverTable);
+
+        String driverId = (String)driverTable.get("driverId");
+        System.out.println("driverId = " + driverId);
+
+//List of Map:
+        List<Map<String, Object>> drivers = jsonPath.getList("MRData.DriverTable.Drivers");
+        System.out.println("drivers = " + drivers);
+
+// Map drivers:
+
+       Map<String, Object> driversMap = jsonPath.getMap("MRData.DriverTable.Drivers[0]");
+        System.out.println("driversMap = " + driversMap);
+
+        String givenName = (String)driversMap.get("givenName");
+        System.out.println("givenName = " + givenName);
+        String permanentNumber = (String) driversMap.get("permanentNumber");
+        System.out.println("permanentNumber = " + permanentNumber);
+    }
+
+    @DisplayName("Get info from Driver information using deseriliztion POJO ")
+    @Test
+    public void testWithPojo(){
+
+        Response response = given().accept(ContentType.JSON)
+                .pathParam("driverId", "alonso")
+                .when().get("/drivers/{driverId}.json")
+                .then()
+                .statusCode(200)
+                .and()
+                .contentType("application/json; charset=utf-8")
+                .extract().response();
+
+JsonPath js =response.jsonPath();
+
+        FormulaDriver formulaDriver = js.getObject("MRData.DriverTable.Drivers[0]", FormulaDriver.class);
+        System.out.println("formulaDriver = " + formulaDriver);
+
+ //print all request:
+        System.out.println("formulaDriver.getFamilyName() = " + formulaDriver.getFamilyName());
+
+
+        System.out.println("formulaDriver.getGivenName() = " + formulaDriver.getGivenName());
+
+
+        System.out.println("formulaDriver.getNationality() = " + formulaDriver.getNationality());
+    }
+
 }

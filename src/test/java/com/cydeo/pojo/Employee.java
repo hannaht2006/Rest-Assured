@@ -8,8 +8,10 @@ import lombok.Getter;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
+
   @JsonProperty("first_name")
     private String firstName;
+
   @JsonProperty("last_name")
     private String lastName;
     private int salary;

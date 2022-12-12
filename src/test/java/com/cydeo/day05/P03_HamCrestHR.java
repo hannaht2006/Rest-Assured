@@ -39,6 +39,7 @@ public class P03_HamCrestHR extends HrTestBase {
          VPATABAL
          DLORENTZ
          */
+       // firstname list:
         List<String> names = Arrays.asList("Alexander", "Bruce", "David", "Valli", "Diana");
 
         given().accept(ContentType.JSON)
@@ -51,7 +52,7 @@ public class P03_HamCrestHR extends HrTestBase {
                 .body("items.manager_id", everyItem(notNullValue()))
                 .body("items.job_id", everyItem(equalTo("IT_PROG")))
                 .body("items.salary",everyItem(greaterThan(3000)))
-                .body("items.first_name",equalTo(names))
+                .body("items.first_name",equalTo(names))//names is List above
                 .body("items.email",containsInAnyOrder("DAUSTIN","AHUNOLD","BERNST","VPATABAL","DLORENTZ")) ;
 
     }
@@ -96,9 +97,13 @@ public class P03_HamCrestHR extends HrTestBase {
                 .body("items.region_id", containsInRelativeOrder(1, 2, 3, 4))
                 .extract().jsonPath();
 
-//print all the regions name
+//print all the regions name if we need  to test against with UI ot DB, we will make all region names as a List:
         List<String> regionNames = jsonPath.getList("items.region_name");
         System.out.println("regionNames = " + regionNames);
+
+        //and we get all region names from database
+
+        //compare
     }
 
     @Test
@@ -119,7 +124,9 @@ public class P03_HamCrestHR extends HrTestBase {
                 .body("items.region_id", containsInRelativeOrder(1, 2, 3, 4))
                 .extract().response().jsonPath();
 
+        //choose correct path to store data to List:
         List<Map<String, Object>> list = jsonPath.getList("items");
+        System.out.println("list = " + list);
     }
 
     }

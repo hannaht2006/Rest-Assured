@@ -4,6 +4,7 @@ import com.cydeo.utilities.SpartanTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +52,10 @@ public class P04_DeserilizationToCollection extends SpartanTestBase {
         int id = (int) spatanMap.get("id");
         String name = (String) spatanMap.get("name");
         String gender = (String) spatanMap.get("gender");
+
+        //example: we will verify id from API with Database:
+        int idFromDb = 10;
+        Assertions.assertEquals(id, idFromDb);
 
         //approach second --> with JASONPATH
 
@@ -101,13 +106,13 @@ public class P04_DeserilizationToCollection extends SpartanTestBase {
     System.out.println("spartanList.get(0).get(\"id\") = " + spartanList.get(0).get("id"));
 
     //how to store first spartan info as a map with response.as() method
-    //if you want to convert only spercific part of response with response.as() --> it does not have any parameters to get as path of json object. --> we can use here response.path() method to convert this as a object.
-    //since we know the type of it we can use and store as MAp
+    //if you want to convert only specific part of response with response.as() --> it does not have any parameters to get as path of json object. --> we can use here response.path() method to convert this as an object.
+    //since we know the type of it we can use and store as Map
     Map<String, Object> firstSpartan  = response.path("[0]");
     System.out.println("firstSpartan = " + firstSpartan);
 
 
- //approach second --> with JASONPATH
+ //approach second (mostly use method)--> with JASONPATH
      JsonPath jsonPath = response.jsonPath();
 
      List<Map<String, Object>> listAllSpartanJsonPath = jsonPath.getList("");
