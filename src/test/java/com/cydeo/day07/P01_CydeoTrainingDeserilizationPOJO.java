@@ -1,10 +1,9 @@
 package com.cydeo.day07;
 
-import com.cydeo.pojo.Student;
+import com.cydeo.pojo.cydeoTrainingPojo.Student;
 import com.cydeo.utilities.CydeoTrainingTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +38,7 @@ public class P01_CydeoTrainingDeserilizationPOJO extends CydeoTrainingTestBase {
                 .and()
                 .pathParam("id", 2)
                 .when().get("/student/{id}")
+                .prettyPeek()
                 .then()
                 .statusCode(200)
                 .extract().jsonPath();

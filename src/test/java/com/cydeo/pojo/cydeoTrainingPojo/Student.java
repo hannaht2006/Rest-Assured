@@ -1,4 +1,4 @@
-package com.cydeo.pojo;
+package com.cydeo.pojo.cydeoTrainingPojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(value="id", allowSetters = true)
 public class Spartan {
+
+    //search class has relation with Spartan class
+    //it is called as HAS-A relationship
     private int id;
     private String name;
     private String gender;

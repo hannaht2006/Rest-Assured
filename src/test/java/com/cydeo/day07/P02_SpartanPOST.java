@@ -75,7 +75,7 @@ public class P02_SpartanPOST extends SpartanTestBase {
         requestBody.put("name", "Math Damon");
         requestBody.put("gender","Male" );
         requestBody.put("phone",8877445596L );
- //we can create SpartanUtil to create dynamic Spartna as Map to use in request
+ //we can create SpartanUtil to create dynamic Spartan as Map to use in request
  //  Map<String, Object> spartanMap = SpartanUtil.getSpartanAsMap();
 
 //can we add more info --> no, we cannot

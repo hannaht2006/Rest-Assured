@@ -18,7 +18,8 @@ public class Region {
 
     @JsonProperty("region_name")
     private String regionName;
-    private List<Link> links;
 
+    private List<Link> links;
+//List<Link> links: will be created in Link class
 
 }

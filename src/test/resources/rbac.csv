@@ -1,0 +1,4 @@
+username , password , id, statuscode
+ admin,admin,3877, 200
+ user,user,3877, 200
+ editor,editor,3877, 200

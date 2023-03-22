@@ -9,8 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.hamcrest.MatcherAssert.*;
+
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 
@@ -52,7 +51,7 @@ public class P02_HamcrestSpartan extends SpartanTestBase {
 
         /*
         REQUEST
-            given().log().all() --> it will give all inforamtion anout your request (path/query params , URI , body etc )
+            given().log().all() --> it will give all information about your request (path/query params , URI , body etc )
                   .method()
                   .uri()
                   .parameters() ......
@@ -81,7 +80,7 @@ public class P02_HamcrestSpartan extends SpartanTestBase {
 //But when you type path to end , it is not complaining
 //without  extract().response(), can not initialize response object
 
-        //if we need id to verify agaist UI test, so we get id as below:
+        //if we need id to verify against UI test, so we get id as below:
         int id = response.path("id");
         System.out.println("id = " + id);
 /*
@@ -95,7 +94,7 @@ then(). log().all() --> it will give all response information
 
 //how to print response body:
         /*
-        response.prettyPrint() (String)--> it is printing responce body into screen
+        response.prettyPrint() (String)--> it is printing response body into screen
         -response.prettyPeek() (Response)--> it will print response into screen, returns response and allows us to continue chaining
          */
 
@@ -137,7 +136,7 @@ then(). log().all() --> it will give all response information
         System.out.println("id = " + id);
     }
 
-//    it depends  what data you want to get, then you can use extract() with response or jsonPath()
+//    it depends what data you want to get, then you can use extract() with response or jsonPath()
 
 
     @DisplayName("Get Single Spartan with Hamcrest")
