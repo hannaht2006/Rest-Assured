@@ -1,0 +1,8 @@
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:96 - 1211 is created
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:115 - GET spartan --> {"id":1211,"name":"API POST Flow","gender":"Male","phone":8877445596}
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:127 - PUT Spartan -->Spartan{id=0, name='API PUT Flow', gender='Male', phone=8877445596}
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:141 - 1211 is updated
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:159 - GET Spartan --> {"id":1211,"name":"API PUT Flow","gender":"Male","phone":8877445596}
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:174 - 1211 is deleted
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:191 - GET Spartan is not found --> {"timestamp":"2022-12-27T16:51:28.476+00:00","status":404,"error":"Not Found","message":"","path":"/api/spartans/1211"}
+27.12.2022 11:51:00 INFO  P01_SpartanFlow_Logging:192 - 1211 is not exist
